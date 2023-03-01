@@ -1,5 +1,5 @@
 # Development VNFD path: test/test_vnf/test_vnfd.yaml
-# Development Prometheus url: http://127.0.0.1:38173/api/v1/query
+# Development Prometheus url: http://127.0.0.1:30000/api/v1/query
 # Port forwaring is necessary: kubectl -n monitoring port-forward services/prometheus-operated 38173:9090
 
 import yaml
@@ -7,7 +7,7 @@ import requests
 import subprocess
 import os
 
-PROMETHEUS_URL = "http://127.0.0.1:38173/api/v1/query"
+PROMETHEUS_URL = "http://127.0.0.1:30000/api/v1/query"
 
 # Check if the package is valid
 vnfdPath = input("Enter the path to the VNFD file: ")
