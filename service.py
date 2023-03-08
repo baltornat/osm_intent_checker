@@ -43,6 +43,7 @@ with open(vnfdPath, "r") as vnfd:
         bashCommand = "helm template {}".format(helmChart)
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
+        print(output)
         parsed_output = yaml.safe_load(output)
         # Do something with the parsed output
         print(parsed_output)
