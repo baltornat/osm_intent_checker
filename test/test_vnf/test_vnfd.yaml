@@ -62,6 +62,9 @@ vnfd:
       - name: eth0
         virtual-interface:
           type: PARAVIRT
+  kdu:
+  - name: orc8r
+    helm-chart: stable/hadoop
   ext-cpd:
   - id: vnf-cp0-ext
     int-cpd:
