@@ -1,1 +1,0 @@
-ffd1bb260a228bd60cddf5e5583f9506	fb_magma_knf/open5gs_vnfd.yaml

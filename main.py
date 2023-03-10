@@ -11,10 +11,12 @@ prometheus_url = 'http://10.152.183.160:9090/api/v1/query'
 
 
 def main():
-    vnfd = Vnfd(input('Enter the path to the VNFD file: '))
-    nsd = Nsd(input('Enter the path to the NSD file: '))
+    vnfd = None
+    nsd = None
     try:
+        vnfd = Vnfd(input('Enter the path to the VNFD file: '))
         vnfd.validate_package()
+        nsd = Nsd(input('Enter the path to the NSD file: '))
         nsd.validate_package()
         name, chart_or_bundle = vnfd.get_chart_or_bundle()
         if chart_or_bundle == 'helm-chart':
@@ -38,8 +40,10 @@ def main():
             print('To be implemented')
     except NotSol006 as e:
         print("Caught NotSol006 code {}: {}".format(e.code, e))
-        vnfd.translate_package()
-        nsd.translate_package()
+        if vnfd:
+            vnfd.translate_package()
+        if nsd:
+            nsd.translate_package()
     except PackageNotValid as e:
         print("Caught PackageNotValid code {}: {}".format(e.code, e))
     except KduNotFound as e:

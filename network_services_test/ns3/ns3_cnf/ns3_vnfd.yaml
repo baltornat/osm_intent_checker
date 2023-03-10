@@ -1,0 +1,19 @@
+vnfd:
+  description: KNF with single KDU using a helm-chart
+  df:
+  - id: default-df
+  ext-cpd:
+  - id: mgmt-ext
+    k8s-cluster-net: mgmtnet
+  id: ns3_knf
+  k8s-cluster:
+    nets:
+    - id: mgmtnet
+  kdu:
+  - name: minecraft
+    helm-chart: stable/wordpress
+  mgmt-cp: mgmt-ext
+  product-name: ns3_knf
+  provider: Unimi
+  version: 1.0
+
