@@ -1,4 +1,4 @@
-class JujuCharm:
+class JujuBundle:
     def __init__(self, name):
         self.name = name
 

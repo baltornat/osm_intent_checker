@@ -10,11 +10,16 @@ class HelmChart:
     # Function that returns 2 lists. The first contains cpu and memory requirements of the chart and the second contains
     # storage requirements of the chart
     def get_requirements_helm(self):
-        output = subprocess.check_output(['helm', 'show', 'values', self.name], text=True)
-        data = yaml.safe_load(output)
-        resources = find_nested_tags(data, 'resources')
-        persistence = find_nested_tags(data, 'persistence')
-        return resources, persistence
+        try:
+            output = subprocess.check_output(['helm', 'show', 'values', self.name], text=True)
+            data = yaml.safe_load(output)
+            resources = find_nested_tags(data, 'resources')
+            persistence = find_nested_tags(data, 'persistence')
+            return resources, persistence
+        except subprocess.CalledProcessError as e:
+            print('Caught CalledProcessError: ', e)
+        except yaml.YAMLError as e:
+            print('Caught YAMLError: ', e)
 
     # Function that returns the sum of values with the same key in a dictionary to calculate total requests/limits
     # requirements for cpu and memory
