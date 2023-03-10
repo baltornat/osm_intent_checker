@@ -11,6 +11,14 @@ prometheus_url = 'http://10.152.183.160:9090/api/v1/query'
 
 
 def main():
+    print("Test VNFDs using Helm Chart:\n"
+          "network_services_test/ns1/ns1_cnf/ns1_vnfd.yaml\n"
+          "network_services_test/ns2/ns2_cnf/ns2_vnfd.yaml\n"
+          "network_services_test/ns3/ns3_cnf/ns3_vnfd.yaml\n")
+    print("Test NSDs using Helm Chart:\n"
+          "network_services_test/ns1/ns1_ns/ns1_nsd.yaml\n"
+          "network_services_test/ns2/ns2_ns/ns2_nsd.yaml\n"
+          "network_services_test/ns3/ns3_ns/ns3_nsd.yaml\n")
     vnfd = None
     nsd = None
     try:

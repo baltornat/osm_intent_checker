@@ -8,5 +8,5 @@ The thesis work consists in the creation of a network service which, once integr
 - `osm_intent_controller/`
   - `classes/`: contains classes definitions
   - `exceptions/`: contains a class to manage custom exceptions
-  - `test_inputs/`: contains presetted VNFDs/NSDs to run tests
+  - `network_services_test/`: contains presetted VNFDs/NSDs to run tests
   - `utils/`: contains global functions
