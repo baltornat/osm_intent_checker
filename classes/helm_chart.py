@@ -30,6 +30,6 @@ class HelmChart:
         return sum([convert(r[choice][component]) for r in resources if choice in r and component in r[choice]])
 
     # Nested version of the function above to calculate total storage size requested
-    # presistence: list
+    # persistence: list
     def sum_persistence(self, persistence):
         return sum([convert(size) for item in persistence for size in find_nested_tags(item, 'size')])
