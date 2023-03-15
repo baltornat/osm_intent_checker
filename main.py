@@ -35,12 +35,12 @@ def main():
                 name, chart_or_bundle = vnfd.get_chart_or_bundle()
                 if chart_or_bundle == 'helm-chart':
                     helm_chart = HelmChart(name)
-                    total_resources = helm_chart.get_requirements_helm()
-                    print("\nResources requested by the network service:\n", json.dumps(total_resources, indent=4, sort_keys=True))
+                    helm_chart.get_requirements_helm()
+                    print("\nResources requested by the network service:\n", json.dumps(helm_chart.total_resources, indent=4, sort_keys=True))
                 elif chart_or_bundle == 'juju-bundle':
                     juju_bundle = JujuBundle(name)
                     print('To be implemented')
-                for key, value in total_resources.items():
+                for key, value in helm_chart.total_resources.items():
                     complete_deployment.deployment_resources[key] += value
                 # Create the instance for the network service
                 vim_account = ns_data['ns']['vim_account']
