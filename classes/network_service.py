@@ -20,6 +20,7 @@ class NetworkService:
     def upload_nspkg(self):
         print("osm nspkg-create {}".format(self.nsd.package_path))
         '''
+        # Check if nfpkg is done before nspkg
         try:
             output = subprocess.check_output(['osm', 'nspkg-create', self.nsd.package_path], text=True)
         except subprocess.CalledProcessError as e:
@@ -30,6 +31,7 @@ class NetworkService:
         print("osm ns-create --ns_name {} --nsd_name {} --vim_account {}".format(self.ns_name, self.nsd.get_nsd_name(),
               self.vim_account))
         '''
+        # Check if both the VNFD and the NSD are uploaded on the server
         try:
             output = subprocess.check_output(['osm', 'ns-create', '--ns_name', self.ns_name, '--nsd_name',
                                               self.nsd.get_nsd_name(), '--vim_account', self.vim_account], text=True)

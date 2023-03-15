@@ -11,7 +11,7 @@ vnfd:
     - id: mgmtnet
   kdu:
   - name: minecraft
-    helm-chart: stable/hadoop
+    helm-chart: stable/atlantis
   mgmt-cp: mgmt-ext
   product-name: ns2_knf
   provider: Unimi

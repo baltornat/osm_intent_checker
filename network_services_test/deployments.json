@@ -1,35 +1,35 @@
 {
-    "deployment1": {
-    	"base_directory": "ns1",
+    "ns1": {
     	"cnf": {
     		"base_directory": "ns1_cnf",
 			"vnfd": "ns1_vnfd.yaml"
     	},
     	"ns": {
 			"base_directory": "ns1_ns",
-			"nsd": "ns1_nsd.yaml"
+			"nsd": "ns1_nsd.yaml",
+			"vim_account": "vim1"
 		}
     },
-    "deployment2": {
-    	"base_directory": "ns2",
+    "ns2": {
     	"cnf": {
     		"base_directory": "ns2_cnf",
 			"vnfd": "ns2_vnfd.yaml"
     	},
     	"ns": {
 			"base_directory": "ns2_ns",
-			"nsd": "ns2_nsd.yaml"
+			"nsd": "ns2_nsd.yaml",
+			"vim_account": "vim2"
 		}
     },
-	"deployment3": {
-    	"base_directory": "ns3",
+	"ns3": {
     	"cnf": {
     		"base_directory": "ns3_cnf",
 			"vnfd": "ns3_vnfd.yaml"
     	},
     	"ns": {
 			"base_directory": "ns3_ns",
-			"nsd": "ns3_nsd.yaml"
+			"nsd": "ns3_nsd.yaml",
+			"vim_account": "vim3"
 		}
     }
 }

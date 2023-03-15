@@ -42,9 +42,11 @@ class Vnfd:
                 if 'kdu' in data['vnfd']:
                     if 'helm-chart' in data['vnfd']['kdu'][0]:
                         name = data['vnfd']['kdu'][0]['helm-chart']
+                        print("Found helm-chart {}".format(name))
                         return name, 'helm-chart'
                     elif 'juju-bundle' in data['vnfd']['kdu'][0]:
                         name = data['vnfd']['kdu'][0]['juju-bundle']
+                        print("Found juju-bundle {}".format(name))
                         return name, 'juju-bundle'
                 else:
                     # KDU not found in YAML
