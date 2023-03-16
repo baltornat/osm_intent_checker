@@ -36,7 +36,7 @@ def main():
                 if chart_or_bundle == 'helm-chart':
                     helm_chart = HelmChart(name)
                     helm_chart.get_requirements_helm()
-                    print("\nResources requested by the network service:\n", json.dumps(helm_chart.total_resources, indent=4, sort_keys=True))
+                    print("\nResources requested by the network service:", json.dumps(helm_chart.total_resources, indent=4))
                 elif chart_or_bundle == 'juju-bundle':
                     juju_bundle = JujuBundle(name)
                     print('To be implemented')

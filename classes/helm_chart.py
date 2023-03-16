@@ -10,9 +10,9 @@ class HelmChart:
         self.total_resources = {
             "cpu_requests": 0,
             "memory_requests": 0,
+            "storage": 0,
             "cpu_limits": 0,
             "memory_limits": 0,
-            "storage": 0,
             "sizeLimit": 0
         }
 
@@ -48,10 +48,12 @@ class HelmChart:
             for volume in volumes:
                 sizes = volume.get("emptyDir", {})
                 if not sizes:
-                    print("WARNING: Sizes not defined for Storage in {} - {}".format(parsed_doc["kind"], parsed_doc["metadata"]["name"]))
-                for key in self.total_resources.keys():
-                    if key == "sizeLimit" and key in sizes:
-                        self.total_resources[key] += convert(sizes[key]) * int(replicas)
+                    print("WARNING: Sizes not defined for Storage in {} - {}".format(parsed_doc["kind"],
+                                                                                     parsed_doc["metadata"]["name"]))
+                else:
+                    for key in self.total_resources.keys():
+                        if key == "sizeLimit" and key in sizes:
+                            self.total_resources[key] += convert(sizes[key]) * int(replicas)
 
     def get_data_from_persistent_volume_claim(self, parsed_doc, replicas):
         # Extract storage requests if kind == "PersistentVolumeClaim"
@@ -59,9 +61,10 @@ class HelmChart:
         if not requests:
             print("WARNING: Requests not defined for Storage in {} - {}".format(parsed_doc["kind"],
                                                                                 parsed_doc["metadata"]["name"]))
-        for key in self.total_resources.keys():
-            if key == "storage" and key in requests:
-                self.total_resources[key] += convert(requests[key]) * int(replicas)
+        else:
+            for key in self.total_resources.keys():
+                if key == "storage" and key in requests:
+                    self.total_resources[key] += convert(requests[key]) * int(replicas)
 
     def get_data_from_stateful_set(self, parsed_doc, replicas):
         self.get_cpu_memory(parsed_doc, replicas)
@@ -70,10 +73,12 @@ class HelmChart:
             resources = volume_claim.get("spec", {}).get("resources", {})
             requests = resources.get("requests", {})
             if not requests:
-                print("WARNING: Requests not defined for Storage in {} - {}".format(parsed_doc["kind"], parsed_doc["metadata"]["name"]))
-            for key in self.total_resources.keys():
-                if key == "storage" and key in requests:
-                    self.total_resources[key] += convert(requests[key]) * int(replicas)
+                print("WARNING: Requests not defined for Storage in {} - {}".format(parsed_doc["kind"],
+                                                                                    parsed_doc["metadata"]["name"]))
+            else:
+                for key in self.total_resources.keys():
+                    if key == "storage" and key in requests:
+                        self.total_resources[key] += convert(requests[key]) * int(replicas)
 
     def get_cpu_memory(self, parsed_doc, replicas):
         # Extract cpu/memory requests and cpu/memory limits if kind == "StatefulSet" or "Deployment"
@@ -85,17 +90,22 @@ class HelmChart:
             if not requests:
                 print("WARNING: Requests not defined for CPU/Memory in {} - {}".format(parsed_doc["kind"],
                                                                                        parsed_doc["metadata"]["name"]))
+            else:
+                for key in self.total_resources.keys():
+                    if "cpu" in key:
+                        if key.endswith("_requests") and "cpu" in requests:
+                            self.total_resources[key] += convert(requests["cpu"]) * int(replicas)
+                    elif "memory" in key:
+                        if key.endswith("_requests") and "memory" in requests:
+                            self.total_resources[key] += convert(requests["memory"]) * int(replicas)
             if not limits:
                 print("WARNING: Limits not defined for CPU/Memory in {} - {}".format(parsed_doc["kind"],
                                                                                      parsed_doc["metadata"]["name"]))
-            for key in self.total_resources.keys():
-                if "cpu" in key:
-                    if key.endswith("_requests") and "cpu" in requests:
-                        self.total_resources[key] += convert(requests["cpu"]) * int(replicas)
-                    elif key.endswith("_limits") and "cpu" in limits:
-                        self.total_resources[key] += convert(limits["cpu"]) * int(replicas)
-                elif "memory" in key:
-                    if key.endswith("_requests") and "memory" in requests:
-                        self.total_resources[key] += convert(requests["memory"]) * int(replicas)
-                    elif key.endswith("_limits") and "memory" in limits:
-                        self.total_resources[key] += convert(limits["memory"]) * int(replicas)
+            else:
+                for key in self.total_resources.keys():
+                    if "cpu" in key:
+                        if key.endswith("_limits") and "cpu" in limits:
+                            self.total_resources[key] += convert(limits["cpu"]) * int(replicas)
+                    elif "memory" in key:
+                        if key.endswith("_limits") and "memory" in limits:
+                            self.total_resources[key] += convert(limits["memory"]) * int(replicas)
