@@ -9,7 +9,7 @@ from classes.nsd import Nsd
 from classes.prometheus_instance import PrometheusInstance
 from classes.vnfd import Vnfd
 from exceptions.service_exceptions import NotSol006, PackageNotValid, KduNotFound
-from utils.file_utils import print_results
+from utils.file_utils import check_results
 
 prometheus_url = 'http://10.152.183.160:9090/api/v1/query'
 
@@ -20,7 +20,7 @@ def main():
     nsd = None
     try:
         path = input("Enter the path to deployment.json file: ")
-        complete_deployment = Deployment()
+        total_deployment = Deployment()
         with open(path, 'r') as file:
             deployments = json.load(file)
             for ns_name, ns_data in deployments.items():
@@ -41,16 +41,16 @@ def main():
                     juju_bundle = JujuBundle(name)
                     print('To be implemented')
                 for key, value in helm_chart.total_resources.items():
-                    complete_deployment.deployment_resources[key] += value
+                    total_deployment.deployment_resources[key] += value
                 # Create the instance for the network service
                 vim_account = ns_data['ns']['vim_account']
                 network_service = NetworkService(vnfd, nsd, ns_name, vim_account)
-                complete_deployment.add_service(network_service)
+                total_deployment.add_service(network_service)
             prometheus = PrometheusInstance(prometheus_url)
-            print_results(complete_deployment.deployment_resources, prometheus)
+            check_results(total_deployment, prometheus)
             # Deployment
-            # What happens if the outcome is bad?
-            complete_deployment.deploy_services()
+            if total_deployment.is_possible():
+                total_deployment.deploy_services()
     except NotSol006 as e:
         print("Caught NotSol006 code {}: {}".format(e.code, e))
         if vnfd:
