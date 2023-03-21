@@ -47,7 +47,7 @@ def main():
                 for key, value in helm_chart.total_resources.items():
                     total_deployment.deployment_resources[key] += value
                 # Create the instance for the network service
-                vim_account = ns_data['ns']['vim_account']
+                vim_account = ns_data['vim_account']
                 network_service = NetworkService(vnfd, nsd, ns_name, vim_account)
                 total_deployment.add_service(network_service)
             prometheus = PrometheusInstance(prometheus_url)

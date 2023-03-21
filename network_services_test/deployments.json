@@ -6,9 +6,9 @@
     },
     "ns": {
       "base_directory": "ns1_ns",
-      "nsd": "ns1_nsd.yaml",
-      "vim_account": "vim1"
-    }
+      "nsd": "ns1_nsd.yaml"
+    },
+    "vim_account": "vim1"
   },
   "ns2": {
     "cnf": {
@@ -17,9 +17,9 @@
     },
     "ns": {
       "base_directory": "ns2_ns",
-      "nsd": "ns2_nsd.yaml",
-      "vim_account": "vim2"
-    }
+      "nsd": "ns2_nsd.yaml"
+    },
+    "vim_account": "vim2"
   },
   "ns3": {
     "cnf": {
@@ -28,9 +28,9 @@
     },
     "ns": {
       "base_directory": "ns3_ns",
-      "nsd": "ns3_nsd.yaml",
-      "vim_account": "vim3"
-    }
+      "nsd": "ns3_nsd.yaml"
+    },
+    "vim_account": "vim3"
   }
 }
 
