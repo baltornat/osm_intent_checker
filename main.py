@@ -43,6 +43,7 @@ def main():
                 elif chart_or_bundle == 'juju-bundle':
                     juju_bundle = JujuBundle(name)
                     print('To be implemented')
+                # And for juju?
                 for key, value in helm_chart.total_resources.items():
                     total_deployment.deployment_resources[key] += value
                 # Create the instance for the network service

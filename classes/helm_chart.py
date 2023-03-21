@@ -17,8 +17,6 @@ class HelmChart:
             "sizeLimit": 0
         }
 
-    # Function that returns 2 lists. The first contains cpu and memory requirements of the chart and the second contains
-    # storage requirements of the chart
     def get_requirements_helm(self):
         try:
             output = subprocess.check_output(["helm", "template", self.name], text=True)
