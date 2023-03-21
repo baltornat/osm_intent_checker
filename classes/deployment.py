@@ -40,7 +40,8 @@ class Deployment:
             return True
         else:
             if not self.check["cpu_requests"]:
-                print("Deployment not possible because total cpu units requested are more than total cpu units available")
+                print(
+                    "Deployment not possible because total cpu units requested are more than total cpu units available")
             if not self.check["memory_requests"]:
                 print("Deployment not possible because total memory requested is more than total memory available")
             if not self.check["storage"]:

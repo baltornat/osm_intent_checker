@@ -1,6 +1,3 @@
-import subprocess
-
-
 class NetworkService:
     def __init__(self, vnfd, nsd, ns_name, vim_account):
         self.vnfd = vnfd
@@ -29,7 +26,7 @@ class NetworkService:
 
     def deploy_ns(self):
         print("osm ns-create --ns_name {} --nsd_name {} --vim_account {}".format(self.ns_name, self.nsd.get_nsd_name(),
-              self.vim_account))
+                                                                                 self.vim_account))
         '''
         # Check if both the VNFD and the NSD are uploaded on the server
         try:

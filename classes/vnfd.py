@@ -1,5 +1,6 @@
-import subprocess
 import os
+import subprocess
+
 import yaml
 
 from exceptions.service_exceptions import NotSol006, PackageNotValid, KduNotFound

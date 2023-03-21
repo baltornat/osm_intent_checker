@@ -1,36 +1,36 @@
 {
-    "ns1": {
-    	"cnf": {
-    		"base_directory": "ns1_cnf",
-			"vnfd": "ns1_vnfd.yaml"
-    	},
-    	"ns": {
-			"base_directory": "ns1_ns",
-			"nsd": "ns1_nsd.yaml",
-			"vim_account": "vim1"
-		}
+  "ns1": {
+    "cnf": {
+      "base_directory": "ns1_cnf",
+      "vnfd": "ns1_vnfd.yaml"
     },
-    "ns2": {
-    	"cnf": {
-    		"base_directory": "ns2_cnf",
-			"vnfd": "ns2_vnfd.yaml"
-    	},
-    	"ns": {
-			"base_directory": "ns2_ns",
-			"nsd": "ns2_nsd.yaml",
-			"vim_account": "vim2"
-		}
-    },
-	"ns3": {
-    	"cnf": {
-    		"base_directory": "ns3_cnf",
-			"vnfd": "ns3_vnfd.yaml"
-    	},
-    	"ns": {
-			"base_directory": "ns3_ns",
-			"nsd": "ns3_nsd.yaml",
-			"vim_account": "vim3"
-		}
+    "ns": {
+      "base_directory": "ns1_ns",
+      "nsd": "ns1_nsd.yaml",
+      "vim_account": "vim1"
     }
+  },
+  "ns2": {
+    "cnf": {
+      "base_directory": "ns2_cnf",
+      "vnfd": "ns2_vnfd.yaml"
+    },
+    "ns": {
+      "base_directory": "ns2_ns",
+      "nsd": "ns2_nsd.yaml",
+      "vim_account": "vim2"
+    }
+  },
+  "ns3": {
+    "cnf": {
+      "base_directory": "ns3_cnf",
+      "vnfd": "ns3_vnfd.yaml"
+    },
+    "ns": {
+      "base_directory": "ns3_ns",
+      "nsd": "ns3_nsd.yaml",
+      "vim_account": "vim3"
+    }
+  }
 }
 

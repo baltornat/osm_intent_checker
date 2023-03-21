@@ -1,17 +1,17 @@
 vnfd:
   description: KNF with single KDU using a helm-chart
   df:
-  - id: default-df
+    - id: default-df
   ext-cpd:
-  - id: mgmt-ext
-    k8s-cluster-net: mgmtnet
+    - id: mgmt-ext
+      k8s-cluster-net: mgmtnet
   id: ns2_knf
   k8s-cluster:
     nets:
-    - id: mgmtnet
+      - id: mgmtnet
   kdu:
-  - name: minecraft
-    helm-chart: stable/atlantis
+    - name: minecraft
+      helm-chart: stable/atlantis
   mgmt-cp: mgmt-ext
   product-name: ns2_knf
   provider: Unimi

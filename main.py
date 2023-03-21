@@ -24,8 +24,10 @@ def main():
         with open(path, 'r') as file:
             deployments = json.load(file)
             for ns_name, ns_data in deployments.items():
-                vnfd_path = os.path.dirname(path) + "/" + ns_name + "/" + ns_data['cnf']['base_directory'] + "/" + ns_data['cnf']['vnfd']
-                nsd_path = os.path.dirname(path) + "/" + ns_name + "/" + ns_data['ns']['base_directory'] + "/" + ns_data['ns']['nsd']
+                vnfd_path = os.path.dirname(path) + "/" + ns_name + "/" + ns_data['cnf']['base_directory'] + "/" + \
+                            ns_data['cnf']['vnfd']
+                nsd_path = os.path.dirname(path) + "/" + ns_name + "/" + ns_data['ns']['base_directory'] + "/" + \
+                           ns_data['ns']['nsd']
                 vnfd = Vnfd(vnfd_path)
                 print("\nValidating VNFD {} for NS {}...".format(ns_data['cnf']['vnfd'], ns_name))
                 vnfd.validate_package()
@@ -36,7 +38,8 @@ def main():
                 if chart_or_bundle == 'helm-chart':
                     helm_chart = HelmChart(name)
                     helm_chart.get_requirements_helm()
-                    print("\nResources requested by the network service:", json.dumps(helm_chart.total_resources, indent=4))
+                    print("\nResources requested by the network service:",
+                          json.dumps(helm_chart.total_resources, indent=4))
                 elif chart_or_bundle == 'juju-bundle':
                     juju_bundle = JujuBundle(name)
                     print('To be implemented')

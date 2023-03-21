@@ -39,39 +39,52 @@ def check_results(total_deployment, prometheus):
     print("(Outcome)\t(Metric)\t\t\t(Chart/Node)")
     if total_deployment.deployment_resources["cpu_requests"] <= prom_cpu_available:
         total_deployment.check["cpu_requests"] = True
-        print("[OK]\t\tTotal cpu requested:\t\t{}/{} cpu unit(s)".format(total_deployment.deployment_resources["cpu_requests"],
-                                                                         prom_cpu_available))
+        print("[OK]\t\tTotal cpu requested:\t\t{}/{} cpu unit(s)".format(
+            total_deployment.deployment_resources["cpu_requests"],
+            prom_cpu_available))
     else:
-        print("[X]\t\tTotal cpu requested:\t\t{}/{} cpu unit(s)".format(total_deployment.deployment_resources["cpu_requests"],
-                                                                        prom_cpu_available))
+        print("[X]\t\tTotal cpu requested:\t\t{}/{} cpu unit(s)".format(
+            total_deployment.deployment_resources["cpu_requests"],
+            prom_cpu_available))
     if total_deployment.deployment_resources["memory_requests"] <= prom_memory_available:
         total_deployment.check["memory_requests"] = True
-        print("[OK]\t\tTotal memory requested:\t\t{}/{} bytes".format(total_deployment.deployment_resources["memory_requests"],
-                                                                      prom_memory_available))
+        print("[OK]\t\tTotal memory requested:\t\t{}/{} bytes".format(
+            total_deployment.deployment_resources["memory_requests"],
+            prom_memory_available))
     else:
-        print("[X]\t\tTotal memory requested:\t\t{}/{} bytes".format(total_deployment.deployment_resources["memory_requests"],
-                                                                     prom_memory_available))
+        print("[X]\t\tTotal memory requested:\t\t{}/{} bytes".format(
+            total_deployment.deployment_resources["memory_requests"],
+            prom_memory_available))
     if total_deployment.deployment_resources["storage"] <= prom_storage_available:
         total_deployment.check["storage"] = True
         print(
-            "[OK]\t\tTotal storage requested:\t{}/{} bytes".format(total_deployment.deployment_resources["storage"], prom_storage_available))
+            "[OK]\t\tTotal storage requested:\t{}/{} bytes".format(total_deployment.deployment_resources["storage"],
+                                                                   prom_storage_available))
     else:
-        print("[X]\t\tTotal storage requested:\t{}/{} bytes".format(total_deployment.deployment_resources["storage"], prom_storage_available))
+        print("[X]\t\tTotal storage requested:\t{}/{} bytes".format(total_deployment.deployment_resources["storage"],
+                                                                    prom_storage_available))
     if total_deployment.deployment_resources["cpu_limits"] <= prom_cpu_available:
         total_deployment.check["cpu_limits"] = True
-        print("[OK]\t\tTotal cpu limit:\t\t{}/{} cpu unit(s)".format(total_deployment.deployment_resources["cpu_limits"], prom_cpu_available))
+        print(
+            "[OK]\t\tTotal cpu limit:\t\t{}/{} cpu unit(s)".format(total_deployment.deployment_resources["cpu_limits"],
+                                                                   prom_cpu_available))
     else:
-        print("[X]\t\tTotal cpu limit:\t\t{}/{} cpu unit(s)".format(total_deployment.deployment_resources["cpu_limits"], prom_cpu_available))
+        print("[X]\t\tTotal cpu limit:\t\t{}/{} cpu unit(s)".format(total_deployment.deployment_resources["cpu_limits"],
+                                                                    prom_cpu_available))
     if total_deployment.deployment_resources["memory_limits"] <= prom_memory_available:
         total_deployment.check["memory_limits"] = True
-        print("[OK]\t\tTotal memory limit:\t\t{}/{} bytes".format(total_deployment.deployment_resources["memory_limits"],
-                                                                  prom_memory_available))
+        print(
+            "[OK]\t\tTotal memory limit:\t\t{}/{} bytes".format(total_deployment.deployment_resources["memory_limits"],
+                                                                prom_memory_available))
     else:
         print(
-            "[X]\t\tTotal memory limit:\t\t{}/{} bytes".format(total_deployment.deployment_resources["memory_limits"], prom_memory_available))
+            "[X]\t\tTotal memory limit:\t\t{}/{} bytes".format(total_deployment.deployment_resources["memory_limits"],
+                                                               prom_memory_available))
     if total_deployment.deployment_resources["sizeLimit"] <= prom_storage_available:
         total_deployment.check["sizeLimit"] = True
         print(
-            "[OK]\t\tTotal storage limit:\t\t{}/{} bytes".format(total_deployment.deployment_resources["sizeLimit"], prom_storage_available))
+            "[OK]\t\tTotal storage limit:\t\t{}/{} bytes".format(total_deployment.deployment_resources["sizeLimit"],
+                                                                 prom_storage_available))
     else:
-        print("[X]\t\tTotal storage limit:\t\t{}/{} bytes".format(total_deployment.deployment_resources["sizeLimit"], prom_storage_available))
+        print("[X]\t\tTotal storage limit:\t\t{}/{} bytes".format(total_deployment.deployment_resources["sizeLimit"],
+                                                                  prom_storage_available))

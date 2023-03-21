@@ -1,23 +1,23 @@
 nsd:
   nsd:
-  - description: NS consisting of a single KNF connected to mgmt network
-    designer: Unimi
-    df:
-    - id: default-df
-      vnf-profile:
-      - id: ns1
-        virtual-link-connectivity:
-        - constituent-cpd-id:
-          - constituent-base-element-id: ns1
-            constituent-cpd-id: mgmt-ext
-          virtual-link-profile-id: mgmtnet
-        vnfd-id: ns1_knf
-    id: ns1_ns
-    name: ns1_ns
-    version: 1.0
-    virtual-link-desc:
-    - id: mgmtnet
-      mgmt-network: true
-    vnfd-id:
-    - ns1_knf
+    - description: NS consisting of a single KNF connected to mgmt network
+      designer: Unimi
+      df:
+        - id: default-df
+          vnf-profile:
+            - id: ns1
+              virtual-link-connectivity:
+                - constituent-cpd-id:
+                    - constituent-base-element-id: ns1
+                      constituent-cpd-id: mgmt-ext
+                  virtual-link-profile-id: mgmtnet
+              vnfd-id: ns1_knf
+      id: ns1_ns
+      name: ns1_ns
+      version: 1.0
+      virtual-link-desc:
+        - id: mgmtnet
+          mgmt-network: true
+      vnfd-id:
+        - ns1_knf
 
