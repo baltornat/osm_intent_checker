@@ -10,6 +10,7 @@ class Nsd:
     def __init__(self, path):
         self.path = path
         self.package_path = os.path.dirname(path)
+        self.package_id = None
 
     # Function that validates the package
     def validate_package(self):

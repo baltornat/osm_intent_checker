@@ -35,7 +35,7 @@ def check_results(total_deployment, prometheus):
     prom_cpu_available = prometheus.get_node_cpu_available()
     prom_memory_available = prometheus.get_node_memory_available()
     prom_storage_available = prometheus.get_node_storage_available()
-    print("\nTotal resources requested by all network services")
+    print("\nTotal resources requested by all network services defined inside deployments.json")
     print("(Outcome)\t(Metric)\t\t\t(Chart/Node)")
     if total_deployment.deployment_resources["cpu_requests"] <= prom_cpu_available:
         total_deployment.check["cpu_requests"] = True

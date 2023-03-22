@@ -1,3 +1,6 @@
+from exceptions.service_exceptions import CnfNotUploaded, NsNotUploaded, DeploymentFailed
+
+
 class Deployment:
     def __init__(self):
         self.ns_list = {}
@@ -22,11 +25,18 @@ class Deployment:
         self.ns_list[network_service.ns_name] = network_service
 
     def deploy_services(self):
-        for ns_name, network_service in self.ns_list.items():
-            print("\nDeploying {} network service...".format(ns_name))
-            network_service.upload_nfpkg()
-            network_service.upload_nspkg()
-            network_service.deploy_ns()
+        try:
+            for ns_name, network_service in self.ns_list.items():
+                print("\nDeploying {} network service...".format(ns_name))
+                network_service.upload_nfpkg()
+                network_service.upload_nspkg()
+                network_service.deploy_ns()
+        except CnfNotUploaded as e:
+            print("Caught CnfNotUploaded code {}: {}".format(e.code, e))
+        except NsNotUploaded as e:
+            print("Caught NsNotUploaded code {}: {}".format(e.code, e))
+        except DeploymentFailed as e:
+            print("Caught DeploymentFailed code {}: {}".format(e.code, e))
 
     def is_possible(self):
         print("\n")
