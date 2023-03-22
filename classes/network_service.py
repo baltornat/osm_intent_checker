@@ -1,7 +1,7 @@
 import subprocess
 import re
 
-from exceptions.service_exceptions import CnfNotUploaded, NsNotUploaded, DeploymentFailed
+from exceptions.service_exceptions import CnfNotUploaded, NsNotUploaded, DeploymentFailed, VimNotFound
 
 
 class NetworkService:
@@ -15,7 +15,6 @@ class NetworkService:
     def upload_nfpkg(self):
         try:
             output = subprocess.check_output(['osm', 'nfpkg-create', self.vnfd.package_path])
-            print(output)
             package_id_pattern = re.compile(r"([a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12})")
             match = package_id_pattern.search(output.decode())
             if match:
@@ -33,7 +32,6 @@ class NetworkService:
     def upload_nspkg(self):
         try:
             output = subprocess.check_output(['osm', 'nspkg-create', self.nsd.package_path])
-            print(output)
             package_id_pattern = re.compile(r"([a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12})")
             match = package_id_pattern.search(output.decode())
             if match:
@@ -51,8 +49,7 @@ class NetworkService:
     def deploy_ns(self):
         try:
             output = subprocess.check_output(['osm', 'ns-create', '--ns_name', self.ns_name, '--nsd_name',
-                                              self.nsd.get_nsd_name(), '--vim_account', self.vim_account], text=True)
-            print(output)
+                                              self.nsd.get_nsd_name(), '--vim_account', self.vim_account])
             package_id_pattern = re.compile(r"([a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12})")
             match = package_id_pattern.search(output.decode())
             if match:
@@ -63,6 +60,15 @@ class NetworkService:
             if self.package_id is None or self.package_id not in output.lower():
                 raise DeploymentFailed(f"Deployment failed: {self.ns_name}")
             else:
-                print(f"\nDone! You need to manually check if the service is in READY state (osm ns-show {self.package_id})")
+                print(
+                    f"\nDone! You need to manually check if the service is in READY state (osm ns-show {self.package_id})")
+        except subprocess.CalledProcessError as e:
+            print('Caught CalledProcessError: ', e)
+
+    def check_vim(self):
+        try:
+            output = subprocess.check_output(['osm', 'vim-list'], text=True)
+            if self.vim_account is None or self.vim_account not in output.lower():
+                raise VimNotFound(f"VIM account {self.vim_account} not found")
         except subprocess.CalledProcessError as e:
             print('Caught CalledProcessError: ', e)

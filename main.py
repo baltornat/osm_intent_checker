@@ -8,7 +8,7 @@ from classes.network_service import NetworkService
 from classes.nsd import Nsd
 from classes.prometheus_instance import PrometheusInstance
 from classes.vnfd import Vnfd
-from exceptions.service_exceptions import NotSol006, PackageNotValid, KduNotFound
+from exceptions.service_exceptions import NotSol006, PackageNotValid, KduNotFound, VimNotFound
 from utils.file_utils import check_results
 
 prometheus_url = 'http://10.152.183.160:9090/api/v1/query'
@@ -49,6 +49,7 @@ def main():
                 # Create the instance for the network service
                 vim_account = ns_data['vim_account']
                 network_service = NetworkService(vnfd, nsd, ns_name, vim_account)
+                network_service.check_vim()
                 total_deployment.add_service(network_service)
             prometheus = PrometheusInstance(prometheus_url)
             check_results(total_deployment, prometheus)
@@ -65,6 +66,8 @@ def main():
         print("Caught PackageNotValid code {}: {}".format(e.code, e))
     except KduNotFound as e:
         print("Caught KduNotFound code {}: {}".format(e.code, e))
+    except VimNotFound as e:
+        print("Caught VimNotFound code {}: {}".format(e.code, e))
     except FileNotFoundError as e:
         print("Caught FileNotFound: {}".format(e))
     except json.JSONDecodeError as e:

@@ -10,7 +10,7 @@ vnfd:
     nets:
       - id: mgmtnet
   kdu:
-    - name: minecraft
+    - name: wordpress
       helm-chart: stable/wordpress
   mgmt-cp: mgmt-ext
   product-name: ns3_knf

@@ -5,15 +5,15 @@ vnfd:
   ext-cpd:
     - id: mgmt-ext
       k8s-cluster-net: mgmtnet
-  id: ns2_knf
+  id: ns4_knf
   k8s-cluster:
     nets:
       - id: mgmtnet
   kdu:
-    - name: atlantis
-      helm-chart: stable/atlantis
+    - name: mysql
+      helm-chart: stable/mysql
   mgmt-cp: mgmt-ext
-  product-name: ns2_knf
+  product-name: ns4_knf
   provider: Unimi
   version: 1.0
 

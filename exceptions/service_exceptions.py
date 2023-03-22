@@ -32,3 +32,9 @@ class DeploymentFailed(Exception):
     def __init__(self, message):
         super().__init__(message)
         self.code = 6
+
+
+class VimNotFound(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+        self.code = 7

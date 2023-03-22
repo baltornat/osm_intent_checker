@@ -10,7 +10,7 @@ vnfd:
     nets:
       - id: mgmtnet
   kdu:
-    - name: minecraft
+    - name: xray
       helm-chart: stable/xray
   mgmt-cp: mgmt-ext
   product-name: ns1_knf
