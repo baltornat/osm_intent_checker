@@ -31,6 +31,17 @@
       "nsd": "ns3_nsd.yaml"
     },
     "vim_account": "vim3"
+  },
+  "ns4": {
+    "cnf": {
+      "base_directory": "ns4_cnf",
+      "vnfd": "ns4_vnfd.yaml"
+    },
+    "ns": {
+      "base_directory": "ns4_ns",
+      "nsd": "ns4_nsd.yaml"
+    },
+    "vim_account": "vim4"
   }
 }
 
