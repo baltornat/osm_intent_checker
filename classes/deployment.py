@@ -32,11 +32,11 @@ class Deployment:
                 network_service.upload_nspkg()
                 network_service.deploy_ns()
         except CnfNotUploaded as e:
-            print("Caught CnfNotUploaded exception code {}: {}".format(e.code, e))
+            print("Caught CnfNotUploaded exception. Code {}: {}".format(e.code, e))
         except NsNotUploaded as e:
-            print("Caught NsNotUploaded exception code {}: {}".format(e.code, e))
+            print("Caught NsNotUploaded exception. Code {}: {}".format(e.code, e))
         except DeploymentFailed as e:
-            print("Caught DeploymentFailed exception code {}: {}".format(e.code, e))
+            print("Caught DeploymentFailed exception. Code {}: {}".format(e.code, e))
 
     def is_possible(self):
         print("\n")
