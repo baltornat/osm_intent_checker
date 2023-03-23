@@ -35,9 +35,9 @@ class HelmChart:
                         elif parsed_doc["kind"] == 'PersistentVolumeClaim':
                             self.get_data_from_persistent_volume_claim(parsed_doc, replicas)
         except subprocess.CalledProcessError as e:
-            print('Caught CalledProcessError: ', e)
+            print('Caught CalledProcessError exception: ', e)
         except yaml.YAMLError as e:
-            print('Caught YAMLError: ', e)
+            print('Caught YAMLError exception: ', e)
 
     def get_data_from_deployment(self, parsed_doc, replicas):
         self.get_cpu_memory(parsed_doc, replicas)

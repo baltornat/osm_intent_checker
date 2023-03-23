@@ -27,7 +27,7 @@ class NetworkService:
             else:
                 print("CNF Package successfully uploaded!")
         except subprocess.CalledProcessError as e:
-            print('Caught CalledProcessError: ', e)
+            print('Caught CalledProcessError exception: ', e)
 
     def upload_nspkg(self):
         try:
@@ -44,7 +44,7 @@ class NetworkService:
             else:
                 print("NS Package successfully uploaded!")
         except subprocess.CalledProcessError as e:
-            print('Caught CalledProcessError: ', e)
+            print('Caught CalledProcessError exception: ', e)
 
     def deploy_ns(self):
         try:
@@ -63,7 +63,7 @@ class NetworkService:
                 print(
                     f"\nDone! You need to manually check if the service is in READY state (osm ns-show {self.package_id})")
         except subprocess.CalledProcessError as e:
-            print('Caught CalledProcessError: ', e)
+            print('Caught CalledProcessError exception: ', e)
 
     def check_vim(self):
         try:
@@ -71,4 +71,4 @@ class NetworkService:
             if self.vim_account is None or self.vim_account not in output.lower():
                 raise VimNotFound(f"VIM account {self.vim_account} not found")
         except subprocess.CalledProcessError as e:
-            print('Caught CalledProcessError: ', e)
+            print('Caught CalledProcessError exception: ', e)

@@ -57,21 +57,21 @@ def main():
             if total_deployment.is_possible():
                 total_deployment.deploy_services()
     except NotSol006 as e:
-        print("Caught NotSol006 code {}: {}".format(e.code, e))
+        print("Caught NotSol006 exception code {}: {}".format(e.code, e))
         if vnfd:
             vnfd.translate_package()
         if nsd:
             nsd.translate_package()
     except PackageNotValid as e:
-        print("Caught PackageNotValid code {}: {}".format(e.code, e))
+        print("Caught PackageNotValid exception code {}: {}".format(e.code, e))
     except KduNotFound as e:
-        print("Caught KduNotFound code {}: {}".format(e.code, e))
+        print("Caught KduNotFound exception code {}: {}".format(e.code, e))
     except VimNotFound as e:
-        print("Caught VimNotFound code {}: {}".format(e.code, e))
+        print("Caught VimNotFound exception code {}: {}".format(e.code, e))
     except FileNotFoundError as e:
-        print("Caught FileNotFound: {}".format(e))
+        print("Caught FileNotFound exception: {}".format(e))
     except json.JSONDecodeError as e:
-        print("Caught JSONDecodeError: {}".format(e))
+        print("Caught JSONDecodeError exception: {}".format(e))
 
 
 if __name__ == "__main__":

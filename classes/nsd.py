@@ -26,7 +26,7 @@ class Nsd:
             else:
                 raise PackageNotValid('Package is not valid')
         except subprocess.CalledProcessError as e:
-            print('Caught CalledProcessError: ', e)
+            print('Caught CalledProcessError exception: ', e)
 
     def translate_package(self):
         try:
@@ -34,7 +34,7 @@ class Nsd:
             output = subprocess.check_output(['osm', 'package-translate', '--recursive', self.package_path],
                                              text=True)
         except subprocess.CalledProcessError as e:
-            print('Caught CalledProcessError: ', e)
+            print('Caught CalledProcessError exception: ', e)
 
     def get_nsd_name(self):
         try:
@@ -42,6 +42,6 @@ class Nsd:
                 data = yaml.safe_load(nsd)
                 return data['nsd']['nsd'][0]['name']
         except FileNotFoundError as e:
-            print('Caught FileNotFoundError: ', e)
+            print('Caught FileNotFoundError exception: ', e)
         except yaml.YAMLError as e:
-            print('Caught YAMLError: ', e)
+            print('Caught YAMLError exception: ', e)

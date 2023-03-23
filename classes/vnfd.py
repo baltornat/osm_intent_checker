@@ -26,7 +26,7 @@ class Vnfd:
             else:
                 raise PackageNotValid('Package is not valid')
         except subprocess.CalledProcessError as e:
-            print('Caught CalledProcessError: ', e)
+            print('Caught CalledProcessError exception: ', e)
 
     def translate_package(self):
         try:
@@ -34,7 +34,7 @@ class Vnfd:
             output = subprocess.check_output(['osm', 'package-translate', '--recursive', self.package_path],
                                              text=True)
         except subprocess.CalledProcessError as e:
-            print('Caught CalledProcessError: ', e)
+            print('Caught CalledProcessError exception: ', e)
 
     # Function that returns the Helm Chart or the Juju Bundle name inside the KDU (Kubernetes Deployment Unit)
     def get_chart_or_bundle(self):
@@ -54,6 +54,6 @@ class Vnfd:
                     # KDU not found in YAML
                     raise KduNotFound('KDU tag not found inside given YAML')
         except FileNotFoundError as e:
-            print('Caught FileNotFoundError: ', e)
+            print('Caught FileNotFoundError exception: ', e)
         except yaml.YAMLError as e:
-            print('Caught YAMLError: ', e)
+            print('Caught YAMLError exception: ', e)

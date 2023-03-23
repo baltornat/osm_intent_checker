@@ -14,7 +14,7 @@ class PrometheusInstance:
             data = response.json()['data']['result'][0]['value']
             return float(data[1])
         except requests.exceptions.RequestException as e:
-            print('Caught RequestException: ', e)
+            print('Caught RequestException exception: ', e)
 
     # Function that returns the quantity (bytes) of memory available on the node
     def get_node_memory_available(self):
@@ -25,7 +25,7 @@ class PrometheusInstance:
             data = response.json()['data']['result'][0]['value']
             return float(data[1])
         except requests.exceptions.RequestException as e:
-            print('Caught RequestException: ', e)
+            print('Caught RequestException exception: ', e)
 
     # Function that returns the quantity (bytes) of storage available on the node
     def get_node_storage_available(self):
@@ -36,4 +36,4 @@ class PrometheusInstance:
             data = response.json()['data']['result'][0]['value']
             return float(data[1])
         except requests.exceptions.RequestException as e:
-            print('Caught RequestException: ', e)
+            print('Caught RequestException exception: ', e)
