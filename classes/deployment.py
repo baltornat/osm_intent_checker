@@ -1,4 +1,4 @@
-from exceptions.service_exceptions import CnfNotUploaded, NsNotUploaded, DeploymentFailed
+from exceptions.api_exceptions import ApiExceptions
 
 
 class Deployment:
@@ -24,19 +24,20 @@ class Deployment:
     def add_service(self, network_service):
         self.ns_list[network_service.ns_name] = network_service
 
-    def deploy_services(self):
+    def deploy_services(self, auth, vim_account):
         try:
             for ns_name, network_service in self.ns_list.items():
-                print("\nDeploying {} network service...".format(ns_name))
-                network_service.upload_nfpkg()
-                network_service.upload_nspkg()
-                network_service.deploy_ns()
-        except CnfNotUploaded as e:
-            print("Caught CnfNotUploaded exception. Code {}: {}".format(e.code, e))
-        except NsNotUploaded as e:
-            print("Caught NsNotUploaded exception. Code {}: {}".format(e.code, e))
-        except DeploymentFailed as e:
-            print("Caught DeploymentFailed exception. Code {}: {}".format(e.code, e))
+                network_service.upload_nfpkg(auth)
+                network_service.upload_nspkg(auth)
+                network_service.deploy_ns(auth, vim_account)
+        except ApiExceptions.CnfPackageUploadException as e:
+            print(f"Caught CnfPackageUploadException exception: Code: {e.code} - Detail: {e.detail} - Status: {e.status}")
+        except ApiExceptions.NsPackageUploadException as e:
+            print(f"Caught NsPackageUploadException exception: Code: {e.code} - Detail: {e.detail} - Status: {e.status}")
+        except ApiExceptions.DeploymentException as e:
+            print(f"Caught DeploymentException exception: Code: {e.code} - Detail: {e.detail} - Status: {e.status}")
+        except ApiExceptions.TokenExpiredException as e:
+            print(f"Caught TokenExpiredException exception: Code: {e.code} - Detail: {e.detail} - Status: {e.status}")
 
     def is_possible(self):
         print("\n")

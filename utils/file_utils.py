@@ -1,4 +1,17 @@
+import os
 import re
+import zipfile
+
+
+def create_zip_file(folder_path, zip_file_name, output_dir='.'):
+    output_path = os.path.join(output_dir, zip_file_name)
+    with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+        for root, dirs, files in os.walk(folder_path):
+            # Remove the initial part of the path to get only the last folder name
+            folder_name = root[len(folder_path)+1:]
+            for file in files:
+                # Add each file in the folder to the zip file with the folder name removed
+                zip_file.write(os.path.join(root, file), os.path.join(folder_name, file))
 
 
 # Function that converts values with suffixes to the corresponding value in bytes

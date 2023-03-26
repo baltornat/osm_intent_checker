@@ -1,5 +1,4 @@
 import subprocess
-
 import yaml
 
 from utils.file_utils import convert
