@@ -24,7 +24,7 @@ class Auth:
                 'username': self.username,
                 'password': self.password
             }
-            response = requests.post(self.nbi_hostname+'admin/v1/tokens/', data=json.dumps(data), headers=headers)
+            response = requests.post(self.nbi_hostname + 'admin/v1/tokens/', data=json.dumps(data), headers=headers)
             parsed_data = yaml.safe_load(response.content.decode('utf-8'))
             self.bearer_token = parsed_data['id']
             self.issued_at = parsed_data['issued_at']
@@ -33,14 +33,6 @@ class Auth:
             print(f"Caught YAMLError exception: {e}")
         except json.JSONDecodeError as e:
             print(f"Caught JSONDecodeError exception: {e}")
-        except requests.exceptions.ConnectionError as e:
-            print(f"Caught ConnectionError exception: {e}")
-        except requests.exceptions.HTTPError as e:
-            print(f"Caught HTTPError exception: {e}")
-        except requests.exceptions.Timeout as e:
-            print(f"Caught Timeout exception: {e}")
-        except requests.exceptions.TooManyRedirects as e:
-            print(f"Caught TooManyRedirects exception: {e}")
         except requests.exceptions.RequestException as e:
             print(f"Caught RequestException exception: {e}")
 
@@ -58,7 +50,7 @@ class Auth:
                 headers = {
                     'Authorization': f"Bearer {self.bearer_token}"
                 }
-                response = requests.delete(self.nbi_hostname+'admin/v1/tokens/', headers=headers)
+                response = requests.delete(self.nbi_hostname + 'admin/v1/tokens/', headers=headers)
                 parsed_data = yaml.safe_load(response.content.decode('utf-8'))
                 if 'deleted' in parsed_data.lower():
                     print('Bearer Token removed successfully')
@@ -70,14 +62,6 @@ class Auth:
             print(f"Caught YAMLError exception: {e}")
         except json.JSONDecodeError as e:
             print(f"Caught JSONDecodeError exception: {e}")
-        except requests.exceptions.ConnectionError as e:
-            print(f"Caught ConnectionError exception: {e}")
-        except requests.exceptions.HTTPError as e:
-            print(f"Caught HTTPError exception: {e}")
-        except requests.exceptions.Timeout as e:
-            print(f"Caught Timeout exception: {e}")
-        except requests.exceptions.TooManyRedirects as e:
-            print(f"Caught TooManyRedirects exception: {e}")
         except requests.exceptions.RequestException as e:
             print(f"Caught RequestException exception: {e}")
 
@@ -102,13 +86,5 @@ class Auth:
             print(f"Caught YAMLError exception: {e}")
         except json.JSONDecodeError as e:
             print(f"Caught JSONDecodeError exception: {e}")
-        except requests.exceptions.ConnectionError as e:
-            print(f"Caught ConnectionError exception: {e}")
-        except requests.exceptions.HTTPError as e:
-            print(f"Caught HTTPError exception: {e}")
-        except requests.exceptions.Timeout as e:
-            print(f"Caught Timeout exception: {e}")
-        except requests.exceptions.TooManyRedirects as e:
-            print(f"Caught TooManyRedirects exception: {e}")
         except requests.exceptions.RequestException as e:
             print(f"Caught RequestException exception: {e}")

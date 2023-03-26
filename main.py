@@ -12,14 +12,7 @@ from classes.vnfd import Vnfd
 from exceptions.api_exceptions import ApiExceptions
 from exceptions.service_exceptions import ServiceExceptions
 from utils.file_utils import check_results
-
-username = 'admin'
-password = '42268d525e2fc9d5a3e599c8b4a524e1'
-
-nbi_hostname = 'http://nbi.172.20.28.130.nip.io/osm/'
-prometheus_url = 'http://10.152.183.160:9090/api/v1/query'
-
-vim_account = "microstack-site"
+from config import USERNAME, PASSWORD, NBI_HOSTNAME, PROMETHEUS_URL, VIM_ACCOUNT
 
 
 def main():
@@ -29,8 +22,8 @@ def main():
         total_deployment = Deployment()
         with open(path, 'r') as file:
             deployments = json.load(file)
-            auth = Auth(username, password, nbi_hostname)
-            print(f"\nGenerating temporary Bearer Token for user {username}")
+            auth = Auth(USERNAME, PASSWORD, NBI_HOSTNAME)
+            print(f"\nGenerating temporary Bearer Token for user {USERNAME}")
             auth.generate_bearer_token()
             for ns_name, ns_data in deployments.items():
                 vnfd_path = os.path.dirname(path) + "/" + ns_name + "/" + ns_data['cnf']['base_directory'] + "/" + \
@@ -55,11 +48,11 @@ def main():
                 network_service = NetworkService(vnfd, nsd, ns_name)
                 total_deployment.add_service(network_service)
                 print('\n---')
-            prometheus = PrometheusInstance(prometheus_url)
+            prometheus = PrometheusInstance(PROMETHEUS_URL)
             check_results(total_deployment, prometheus)
             # Deployment
             if total_deployment.is_possible():
-                total_deployment.deploy_services(auth, vim_account)
+                total_deployment.deploy_services(auth, VIM_ACCOUNT)
             auth.logout()
     except ApiExceptions.CannotLogout as e:
         print(f"Caught CannotLogout exception: Code: {e.code} - Detail: {e.detail} - Status: {e.status}")

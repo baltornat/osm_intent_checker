@@ -22,6 +22,8 @@ class NetworkService:
             if auth.is_token_valid():
                 zip_name = ''.join(random.choices(string.ascii_letters + string.digits, k=15))
                 print(f"Generating temporary file {zip_name}.zip to be uploaded to OSM")
+                if not os.path.exists('tmp'):
+                    os.makedirs('tmp')
                 create_zip_file(self.vnfd.package_path, f"{zip_name}.zip", output_dir='tmp')
                 headers = {
                     'Authorization': f"Bearer {auth.bearer_token}",
@@ -46,14 +48,6 @@ class NetworkService:
             print(f"Caught JSONDecodeError exception: {e}")
         except FileNotFoundError as e:
             print(f"Caught FileNotFound exception: {e}")
-        except requests.exceptions.ConnectionError as e:
-            print(f"Caught ConnectionError exception: {e}")
-        except requests.exceptions.HTTPError as e:
-            print(f"Caught HTTPError exception: {e}")
-        except requests.exceptions.Timeout as e:
-            print(f"Caught Timeout exception: {e}")
-        except requests.exceptions.TooManyRedirects as e:
-            print(f"Caught TooManyRedirects exception: {e}")
         except requests.exceptions.RequestException as e:
             print(f"Caught RequestException exception: {e}")
 
@@ -63,6 +57,8 @@ class NetworkService:
             if auth.is_token_valid():
                 zip_name = ''.join(random.choices(string.ascii_letters + string.digits, k=15))
                 print(f"Generating temporary file {zip_name}.zip to be uploaded to OSM")
+                if not os.path.exists('tmp'):
+                    os.makedirs('tmp')
                 create_zip_file(self.nsd.package_path, f"{zip_name}.zip", output_dir='tmp')
                 headers = {
                     'Authorization': f"Bearer {auth.bearer_token}",
@@ -87,14 +83,6 @@ class NetworkService:
             print(f"Caught JSONDecodeError exception: {e}")
         except FileNotFoundError as e:
             print("Caught FileNotFound exception: {}".format(e))
-        except requests.exceptions.ConnectionError as e:
-            print(f"Caught ConnectionError exception: {e}")
-        except requests.exceptions.HTTPError as e:
-            print(f"Caught HTTPError exception: {e}")
-        except requests.exceptions.Timeout as e:
-            print(f"Caught Timeout exception: {e}")
-        except requests.exceptions.TooManyRedirects as e:
-            print(f"Caught TooManyRedirects exception: {e}")
         except requests.exceptions.RequestException as e:
             print(f"Caught RequestException exception: {e}")
 
@@ -125,14 +113,6 @@ class NetworkService:
             print(f"Caught YAMLError exception: {e}")
         except json.JSONDecodeError as e:
             print(f"Caught JSONDecodeError exception: {e}")
-        except requests.exceptions.ConnectionError as e:
-            print(f"Caught ConnectionError exception: {e}")
-        except requests.exceptions.HTTPError as e:
-            print(f"Caught HTTPError exception: {e}")
-        except requests.exceptions.Timeout as e:
-            print(f"Caught Timeout exception: {e}")
-        except requests.exceptions.TooManyRedirects as e:
-            print(f"Caught TooManyRedirects exception: {e}")
         except requests.exceptions.RequestException as e:
             print(f"Caught RequestException exception: {e}")
         except ApiExceptions.VimNotFound as e:
