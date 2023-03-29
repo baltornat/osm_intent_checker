@@ -1,4 +1,4 @@
-# OSM Intent Controller
+# OSM Intent Checker
 
 Università degli Studi di Milano - Department of Computer Science
 
