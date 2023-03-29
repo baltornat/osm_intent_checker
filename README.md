@@ -14,7 +14,7 @@ solution to allow the deployment of the service to which the intent refers
 
 ## Directory Tree
 
-- `osm_intent_controller/`
+- `osm_intent_checker/`
     - `classes/`: contains classes definitions
     - `exceptions/`: contains a class to manage custom exceptions
     - `network_services_test/`: contains presetted VNFDs/NSDs to run tests
