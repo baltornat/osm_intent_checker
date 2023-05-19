@@ -17,5 +17,5 @@ solution to allow the deployment of the service to which the intent refers
 - `osm_intent_checker/`
     - `classes/`: contains classes definitions
     - `exceptions/`: contains a class to manage custom exceptions
-    - `network_services_test/`: contains presetted VNFDs/NSDs to run tests
+    - `network_services_test/`: contains preset VNFDs/NSDs to run tests
     - `utils/`: contains global functions
